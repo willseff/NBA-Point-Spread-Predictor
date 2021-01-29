@@ -90,7 +90,7 @@ rv.model <- train(x = dat.b.training[,c(1:8)],
 
 
 rv.pred <- predict(rv.model, dat.b.testing)
-rv.cm <- confusionMatrix(table(pred.result, dat.b.testing$beat.line))
+rv.cm <- confusionMatrix(table(rv.pred, dat.b.testing$beat.line))
 
 rv.importance <- varImp(rv.model, scale = FALSE)
 plot(importance, main = "Variable Importance")
@@ -101,7 +101,7 @@ models <- list(decision.tree = dt.model,
                naive.bayes = nb.model,
                random.forest = rv.model)
 
-confusion.matrix <- list()
+confusion.matrix <- list(dt.cm, nb.cm, rv.cm)
 
 models.resampling <- resamples(models)
 
