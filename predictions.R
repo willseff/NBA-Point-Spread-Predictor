@@ -12,4 +12,20 @@ dat$date <- as.Date(as.character(dat$date), format='%Y%m%d')
 ind <- dat$date == Sys.Date()
 
 # all the games today
-dat[ind,-c(1)]
+today.games <- dat[ind,-c(1)]
+
+# drop margin column
+today.games$margin <- NULL
+
+today.games$win.p = today.games$wins/(today.games$wins + today.games$losses)
+
+# change data types to match the training set
+lapply(dat.b.training, class)
+lapply(today.games, class)
+
+# today's games predictions
+rv.pred <- predict(models$decision.tree, today.games)
+
+        
+        
+        
