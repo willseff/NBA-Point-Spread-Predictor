@@ -26,6 +26,11 @@ lapply(today.games, class)
 # today's games predictions
 rv.pred <- predict(models$decision.tree, today.games)
 
-        
+today.games$line <- as.numeric(today.games$line)
+today.games$streak <- as.integer(today.games$streak)
+
+dt.today.pred <- predict(models$decision.tree, today.games)
+
+
         
         
