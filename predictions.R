@@ -26,7 +26,7 @@ today.games <- games.2020[ind,-c(1)]
 
 # today's games predictions
 
-dt.today.pred <- predict(models$decision.tree, today.games, type='prob')
+dt.today.pred <- predict(models$random.forest, today.games, type='prob')
 cbind(today.games,dt.today.pred)
         
         
