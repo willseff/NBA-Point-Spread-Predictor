@@ -9,7 +9,7 @@ library(pROC)
 
 
 # scrape data
-games.2019 <- read_html('https://sportsdatabase.com/nba/query?output=default&sdql=team%2C+site%2C+o%3Ateam%2C+line%2C+streak%2C+margin%2C+wins%2C+losses%2C+o%3Astreak%2C+o%3Awins%2C+o%3Alosses+%40season%3D2019+and+site%3Daway&submit=++S+D+Q+L+%21++') %>% html_table(fill=TRUE)
+games.2019 <- read_html('https://sportsdatabase.com/nba/query?output=default&sdql=date%2C+team%2C+site%2C+o%3Ateam%2C+line%2C+streak%2C+margin%2C+wins%2C+losses%2C+o%3Astreak%2C+o%3Awins%2C+o%3Alosses+%40season%3D2019+and+site%3Daway+&submit=++S+D+Q+L+%21++') %>% html_table(fill=TRUE)
 
 dat <- data.frame(games.2019[4])
 
@@ -37,6 +37,9 @@ test.train.ratio <- 0.75
 
 dat.b.training <- head(dat.b,nrow(dat.b)*test.train.ratio)
 dat.b.testing <- tail(dat.b,nrow(dat.b)*(1-test.train.ratio))
+
+dat.b.training$date <- NULL
+dat.b.testing$date <- NULL
 
 
 
